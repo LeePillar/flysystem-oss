@@ -9,7 +9,7 @@
  */
 namespace apixx\Oss;
 
-use Iidestiny\Flysystem\Oss\Traits\SignatureTrait;
+use apixx\Oss\Traits\SignatureTrait;
 use League\Flysystem\Config;
 use League\Flysystem\DirectoryAttributes;
 use League\Flysystem\PathPrefixer;
@@ -40,14 +40,14 @@ class OssAdapter implements FilesystemAdapter
     // 系统参数
 
     const SYSTEM_FIELD = [
-        'bucket' => '${bucket}',
-        'etag' => '${etag}',
-        'filename' => '${object}',
-        'size' => '${size}',
-        'mimeType' => '${mimeType}',
-        'height' => '${imageInfo.height}',
-        'width' => '${imageInfo.width}',
-        'format' => '${imageInfo.format}',
+        'bucket' => '{$bucket}',
+        'etag' => '{$etag}',
+        'filename' => '{$object}',
+        'size' => '{$size}',
+        'mimeType' => '{$mimeType}',
+        'height' => '{$imageInfo.height}',
+        'width' => '{$imageInfo.width}',
+        'format' => '{$imageInfo.format}',
     ];
 
     /**
@@ -267,7 +267,7 @@ class OssAdapter implements FilesystemAdapter
         } else {
             foreach ($systemData as $key => $value) {
                 if (!in_array($value, self::SYSTEM_FIELD)) {
-                    throw new \InvalidArgumentException("Invalid oss system filed: ${value}");
+                    throw new \InvalidArgumentException("Invalid oss system filed: {$value}");
                 }
                 $system[$key] = $value;
             }
@@ -279,7 +279,7 @@ class OssAdapter implements FilesystemAdapter
         if (!empty($customData)) {
             foreach ($customData as $key => $value) {
                 $callbackVar['x:'.$key] = $value;
-                $data[$key] = '${x:'.$key.'}';
+                $data[$key] = '{$x:'.$key.'}';
             }
         }
 
