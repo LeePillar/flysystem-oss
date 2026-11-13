@@ -1,10 +1,13 @@
 {
     "name": "apixx/flysystem-oss",
-    "description": "Flysystem adapter for the Oss storage.",
+    "description": "Flysystem adapter for Aliyun OSS storage, PHP 8.0 - 8.5 compatible",
+    "type": "library",
     "keywords": [
-        "Laravel",
+        "thinkphp",
+        "flysystem",
         "oss",
         "alioss",
+        "aliyun",
         "阿里oss"
     ],
     "license": "MIT",
@@ -15,10 +18,11 @@
         }
     ],
     "require": {
+        "php": ">=8.0",
+        "topthink/framework": "^6.1 || ^8.0",
         "ext-openssl": "*",
         "ext-curl": "*",
         "ext-json": "*",
-        "php": "^8.0.2",
         "league/flysystem": "^3.0",
         "aliyuncs/oss-sdk-php": "^2.4"
     },
